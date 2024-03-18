@@ -15,10 +15,6 @@ server.use("/todo", todoRouter);
 
 const PORT = 8000;
 
-// async function fooHandler(req:Request, res: Response): Promise<Response> {
-//   return Promise.reject("not implemented");
-// }
-
 statusRouter.get("/", checkStatus);
 
 userRouter.post("/login", login);
