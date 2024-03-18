@@ -1,13 +1,16 @@
 import express from "express";
 import { createTodo, deleteAllTodos, delteOneTodo, getAllTodos, getOneTodo, guardUpdateTodo, updateTodo } from "./todo";
+import { getAllUser, login, register } from "./user";
 import { checkStatus } from "./status";
 
 const server = express();
+const userRouter = express.Router();
 const todoRouter = express.Router();
 const statusRouter = express.Router();
 
 server.use(express.json());
 server.use("/status", statusRouter);
+server.use("/user", userRouter);
 server.use("/todo", todoRouter);
 
 const PORT = 8000;
@@ -17,6 +20,10 @@ const PORT = 8000;
 // }
 
 statusRouter.get("/", checkStatus);
+
+userRouter.post("/login", login);
+userRouter.post("/register", register);
+userRouter.get("/", getAllUser);
 
 todoRouter.post("/", createTodo); // Create new TODO
 todoRouter.get("/", getAllTodos); // Get all TODOs
